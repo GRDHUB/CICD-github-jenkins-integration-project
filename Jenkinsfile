@@ -4,7 +4,7 @@ pipeline {
     stages{
         stage('Code'){
             steps {
-                git url: 'https://github.com/LondheShubham153/node-todo-cicd.git', branch: 'master'
+                git url: 'https://github.com/GRDHUB/node-todo-cicd.git', branch: 'master'
             }
         }
         stage('Build and Test'){
@@ -17,7 +17,7 @@ pipeline {
                 echo 'logging in to docker hub and pushing image..'
                 withCredentials([usernamePassword(credentialsId:'dockerHub',passwordVariable:'dockerHubPassword', usernameVariable:'dockerHubUser')]) {
                     sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
-                    sh "docker push trainwithshubham/node-todo-app-cicd:latest"
+                    sh "docker push docgaura/node-todo-app-cicd:latest"
                 }
             }
         }
